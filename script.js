@@ -1,3 +1,5 @@
+// Define marks and winning combinations
+
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -36,7 +38,8 @@ function startGame() {
 function handleClick(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS: X_CLASS
-  // Place Mark
+
+  // Place mark and determine if the game is a draw
   placeMark(cell, currentClass)
   if (checkWin(currentClass)) {
     endGame(false)
@@ -72,6 +75,7 @@ function swapTurns() {
   circleTurn = !circleTurn
 }
 
+// Reset game board state
 function setBoardHoverClass() {
   board.classList.remove(X_CLASS)
   board.classList.remove(CIRCLE_CLASS)
@@ -82,6 +86,7 @@ function setBoardHoverClass() {
   }
 }
 
+// Determine a winner
 function checkWin(currentClass) {
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
